@@ -1,4 +1,4 @@
-FROM php:7.3-cli
+FROM php:7.4-fpm
 
 LABEL maintainer="Johan Post <johan@chanto.nl>"
 
@@ -24,4 +24,4 @@ ENV PATH=./vendor/bin:/composer/vendor/bin:/root/.yarn/bin:/usr/local/sbin:/usr/
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-WORKDIR /src
+WORKDIR /app
