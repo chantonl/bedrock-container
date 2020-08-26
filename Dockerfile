@@ -24,7 +24,12 @@ ENV PATH=./vendor/bin:/composer/vendor/bin:/root/.yarn/bin:/usr/local/sbin:/usr/
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install wp-cli
-RUN composer global require wp-cli/wp-cli
+# install wp cli
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && \
+    mv wp-cli.phar /usr/local/bin/wp-cli.phar && \
+    echo '#!/bin/sh' >> /usr/local/bin/wp && \
+    echo 'wp-cli.phar "$@" --allow-root' >> /usr/local/bin/wp && \
+    chmod +x /usr/local/bin/wp
 
 WORKDIR /app
