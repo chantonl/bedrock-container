@@ -3,7 +3,7 @@ FROM php:7.4-fpm
 LABEL maintainer="Johan Post <johan@chanto.nl>"
 
 # Install package dependencies
-RUN apt update && apt install -y ghostscript libmagickwand-dev libjpeg-dev libpng-dev libzip-dev git unzip 
+RUN apt update && apt install -y ghostscript libmagickwand-dev libjpeg-dev libpng-dev libzip-dev git unzip mariadb-client
 
 # Enable default PHP extensions
 RUN docker-php-ext-install mysqli pdo_mysql pcntl bcmath zip soap intl gd exif opcache
